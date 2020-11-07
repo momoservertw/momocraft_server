@@ -1,0 +1,21 @@
+version: '3'
+
+services:
+  server:
+    build:
+      context: ./
+    ports:
+      - 25565:25565
+    volumes:
+      - ../papertest:/papertest
+    entrypoint: ["sh","entrypoint.sh"]
+    container_name: server
+    # restart: always
+
+
+  redis:
+    image: redis
+    restart: always
+    volumes:
+      - ./database/redis/data:/data
+
